@@ -44,7 +44,7 @@ const Photo = () => {
             cx="263"
             cy="263"
             r="260"
-            stroke="#e6beae" // Pinkish color
+            stroke="#A2707A" // Pinkish color
             strokeWidth="4"
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -56,24 +56,24 @@ const Services = () => {
               >
                 {/* top */}
                 <div className="w-full flex justify-between items-center">
-                  <div className="text-5xl font-extrabold text-[#e6beae] text-transparent group-hover:text-[#b2967d] transition-all duration-500">
+                  <div className="text-5xl font-extrabold text-[#A2707A] text-transparent group-hover:text-[#8c5e58] transition-all duration-500">
                     {service.num}
                   </div>
                   <Link
                     href={service.href}
                     className="w-[70px] h-[70px] rounded-full bg-[#eee4e1] group-hover:bg-[#e7d8c9] transition-all duration-500 flex justify-center items-center hover:-rotate-45"
                   >
-                    {/* <BsArrowDownRight className="text-[#b2967d] text-3xl" /> */}
+                    {/* <BsArrowDownRight className="text-[#8c5e58] text-3xl" /> */}
                   </Link>
                 </div>
                 {/* title */}
-                <h2 className="text-[42px] font-bold leading-none text-[#b2967d] group-hover:text-[#e6beae] transition-all duration-500">
+                <h2 className="text-[42px] font-bold leading-none text-[#8c5e58] group-hover:text-[#A2707A] transition-all duration-500">
                   {service.title}
                 </h2>
                 {/* description */}
-                <p className="text-[#b2967d]/60">{service.description}</p>
+                <p className="text-[#8c5e58]/60">{service.description}</p>
                 {/* border */}
-                <div className="border-b border-[#b2967d]/20 w-full"></div>
+                <div className="border-b border-[#8c5e58]/20 w-full"></div>
               </div>
             );
           })}

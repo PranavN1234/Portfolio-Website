@@ -4,22 +4,22 @@
 
 @layer base {
   body {
-    @apply font-primary bg-[#ecf8f8] text-[#b2967d] leading-loose; /* Light Blue background, Brown text */
+    @apply font-primary bg-[#ecf8f8] text-[#8c5e58] leading-loose; /* Light Blue background, Brown text */
   }
   .h1 {
-    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold text-[#b2967d]; /* Brown text */
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold text-[#8c5e58]; /* Brown text */
   }
   .h2 {
-    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold text-[#b2967d]; /* Brown text */
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold text-[#8c5e58]; /* Brown text */
   }
   .h3 {
-    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold text-[#b2967d]; /* Brown text */
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold text-[#8c5e58]; /* Brown text */
   }
   .text-outline {
-    -webkit-text-stroke: 1px #b2967d; /* Brown outline */
+    -webkit-text-stroke: 1px #8c5e58; /* Brown outline */
   }
 
   .text-outline-hover {
-    -webkit-text-stroke: 1px #e6beae; /* Pinkish outline on hover */
+    -webkit-text-stroke: 1px #A2707A; /* Pinkish outline on hover */
   }
 }

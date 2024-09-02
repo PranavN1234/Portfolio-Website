@@ -23,6 +23,14 @@ module.exports = {
       primary: "var(--font-jetbrainsMono)",
     },
     extend: {
+      colors: {
+        lightblue: '#ecf8f8',
+        lightgray: '#e7ecef',
+        lightpeach: '#eee4e1',
+        lightbrown: '#e7d8c9',
+        pinkish: '#A2707A',
+        brown: '#8c5e58',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
