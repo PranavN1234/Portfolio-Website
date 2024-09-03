@@ -19,9 +19,14 @@ const links = [
     path: "/work",
   },
   {
+    name: "publications",
+    path: "/publication",
+  },
+  {
     name: "contact",
     path: "/contact",
   },
+  
 ];
 
 const MobileNav = () => {

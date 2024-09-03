@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
 
 // components
 import Nav from "./Nav";
@@ -16,14 +15,9 @@ const Header = () => {
           </h1>
         </Link>
 
-        {/* desktop nav & hire me button */}
+        {/* desktop nav */}
         <div className="hidden xl:flex items-center gap-8">
           <Nav />
-          <Link href="/contact">
-            <Button className="bg-[#eee4e1] text-[#8c5e58] hover:bg-[#e7d8c9]">
-              Hire me
-            </Button> {/* Light Peach background, Brown text, and Light Brown hover effect */}
-          </Link>
         </div>
 
         {/* mobile nav */}

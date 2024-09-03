@@ -12,7 +12,7 @@ const stats = [
     text: "Code commits in 2024",
   },
   {
-    num: 6,
+    num: 3,
     text: "IEEE Conference Publications",
   },
   {
