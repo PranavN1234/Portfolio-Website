@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+
 @layer base {
   body {
     @apply font-primary bg-[#ecf8f8] text-[#8c5e58] leading-loose; /* Light Blue background, Brown text */

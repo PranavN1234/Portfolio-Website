@@ -27,7 +27,7 @@ import {
   SiJenkins,
 } from "react-icons/si";
 
-import "./resume.css";
+
 // About Data
 const about = {
   title: "About me",

@@ -1,25 +1,33 @@
-"use client"
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
 
-// components
+// Components
 import Social from "@/components/Social";
 import Photo from "@/components/Photo";
 import Stats from "@/components/Stats";
+import Resume from "@/components/sections/Resume";
+import Work from "@/components/sections/Work";
+import Publications from "@/components/sections/Publications";
+import Contact from "@/components/sections/Contact";
+import Divider from "@/components/Divider";  // Import Divider component
 
 const Home = () => {
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Path to your resume in the 'public' folder
-    link.download = 'Pranav_resume.pdf'; // Name of the downloaded file
+    const link = document.createElement("a");
+    link.href = "/resume.pdf"; // Path to your resume in the 'public' folder
+    link.download = "Pranav_resume.pdf"; // Name of the downloaded file
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
+
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
+        {/* Home Section */}
+        <div id="home" className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
           {/* text */}
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl text-[#8c5e58]">Software Developer</span>
@@ -53,8 +61,41 @@ const Home = () => {
             <Photo />
           </div>
         </div>
+        {/* Home Stats */}
+        <Stats />
+
+        {/* Divider */}
+        <Divider />
+
+        {/* Resume Section */}
+        <div id="resume">
+          <Resume />
+        </div>
+
+        {/* Divider */}
+        <Divider />
+
+        {/* Work Section */}
+        <div id="work">
+          <Work />
+        </div>
+
+        {/* Divider */}
+        <Divider />
+
+        {/* Publications Section */}
+        <div id="publications">
+          <Publications />
+        </div>
+
+        {/* Divider */}
+        <Divider />
+
+        {/* Contact Section */}
+        <div id="contact">
+          <Contact />
+        </div>
       </div>
-      <Stats />
     </section>
   );
 };
