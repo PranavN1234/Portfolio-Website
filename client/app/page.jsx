@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
+import { useState, useEffect } from "react";
 
 // Components
 import Social from "@/components/Social";
@@ -12,8 +13,23 @@ import Work from "@/components/sections/Work";
 import Publications from "@/components/sections/Publications";
 import Contact from "@/components/sections/Contact";
 import Divider from "@/components/Divider";  // Import Divider component
+import ChatModal from "@/components/ChatModal";
 
 const Home = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);  // Initially false to prevent it from being open on load
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if the device is mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/resume.pdf"; // Path to your resume in the 'public' folder
@@ -96,6 +112,19 @@ const Home = () => {
           <Contact />
         </div>
       </div>
+      
+      {/* Chat Modal Component */}
+      <ChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} isMobile={isMobile} />
+
+      {/* Button to Toggle Chat Modal */}
+      {!isChatOpen && (
+        <button
+          className={`fixed ${isMobile ? 'bottom-4 left-1/2 transform -translate-x-1/2' : 'bottom-4 right-4'} bg-[#8c5e58] text-white p-3 rounded-full shadow-lg hover:bg-[#A2707A]`}
+          onClick={() => setIsChatOpen(true)}
+        >
+          Chat with Me
+        </button>
+      )}
     </section>
   );
 };
