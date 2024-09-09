@@ -41,8 +41,8 @@ def get_llm_answer(prompt):
     data = {
         'model': CHATGPT_MODEL,
         'messages': messages,
-        'temperature': 0.9,
-        'max_tokens': 5000
+        'temperature': 0.1,
+        'max_tokens': 3000
     }
     response = requests.post(url, headers=headers, data=json.dumps(data))
 

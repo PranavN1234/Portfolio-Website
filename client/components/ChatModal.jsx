@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TbRefresh } from "react-icons/tb";
 import { AiOutlineClose } from "react-icons/ai";
-import "./ChatWindow.css"; // Use your existing styles or adjust them as needed
-// import { getAIMessage, clearRecentQueries } from "../api/api"; // Adjust API import as necessary
+import "./ChatWindow.css"; // Ensure this file is updated with the new styles
+import { getAIMessage } from "../api/api"; // Import your API function
 import { marked } from "marked";
 
 const ChatModal = ({ isOpen, onClose, isMobile }) => {
@@ -12,7 +12,7 @@ const ChatModal = ({ isOpen, onClose, isMobile }) => {
     {
       role: "assistant",
       content:
-        "Welcome to Pranav Iyer's Assistant! Ask me anything about Pranav, his projects, or his experience!",
+        "Hey! Welcome to my AI bot powered by RAG (Retrieval-Augmented Generation). It combines stored knowledge with real-time retrieval to give you the most accurate and relevant answers. More information still has to be updated",
     },
   ];
 
@@ -32,6 +32,85 @@ const ChatModal = ({ isOpen, onClose, isMobile }) => {
     scrollToBottom();
   }, [messages]);
 
+  const handleSend = async (userInput) => {
+    if (!userInput.trim()) return; // Don't send empty messages
+
+    // Add user's message to chat
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: "user", content: userInput },
+    ]);
+    setInput(""); // Clear the input field
+    setIsSending(true); // Set sending state to true
+
+    try {
+      // Fetch AI response
+      const aiResponse = await getAIMessage(userInput);
+
+      // Simulate typing effect with a non-breaking space before the text
+      await simulateTyping("\u00A0" + (aiResponse.content || ""), "assistant"); // Ensure aiResponse.content is defined
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          role: "assistant",
+          content: "Sorry, there was an error processing your request.",
+        },
+      ]);
+    } finally {
+      setIsSending(false); // Reset sending state
+    }
+  };
+
+  const simulateTyping = (text, role) => {
+    return new Promise((resolve) => {
+      let index = 0;
+      const typingSpeed = 30; // Adjust typing speed
+
+      // Initialize an empty assistant message with empty content for typing
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { role, content: "", typing: true },
+      ]);
+
+      const typeCharacter = () => {
+        if (index < text.length) {
+          setMessages((prevMessages) => {
+            const lastMessageIndex = prevMessages.length - 1;
+            const lastMessage = prevMessages[lastMessageIndex];
+
+            // Ensure we are modifying the correct message and content is initialized
+            if (
+              lastMessage &&
+              lastMessage.role === role &&
+              lastMessage.typing
+            ) {
+              const updatedContent = (lastMessage.content || "") + text.charAt(index); // Use charAt for safe character retrieval
+              const updatedMessage = {
+                ...lastMessage,
+                content: updatedContent, // Ensure content is defined
+              };
+              return [...prevMessages.slice(0, lastMessageIndex), updatedMessage];
+            }
+            return prevMessages;
+          });
+          index++;
+          setTimeout(typeCharacter, typingSpeed); // Recursively call setTimeout for better control
+        } else {
+          setMessages((prevMessages) =>
+            prevMessages.map((msg) =>
+              msg.typing ? { ...msg, typing: false } : msg
+            )
+          );
+          resolve();
+        }
+      };
+
+      typeCharacter(); // Start typing
+    });
+  };
+
   const handleRefresh = async () => {
     setInput("");
     setMessages(defaultMessage);
@@ -42,14 +121,14 @@ const ChatModal = ({ isOpen, onClose, isMobile }) => {
     isOpen && (
       <div className={`chat-modal ${isMobile && isOpen ? "is-active" : ""}`}>
         <div className="chat-header">
-          <h2 className="chat-title">AI Assistant</h2>
+          <h2 className="chat-title">Pranav Iyer</h2>
           <button className="close-button" onClick={onClose}>
             <AiOutlineClose size={24} />
           </button>
         </div>
         <div className="messages-container">
           {messages.map((message, index) => (
-            <div key={index} className={`${message.role}-message-container`}>
+            <div key={index} className={`message-container ${message.role}`}>
               {message.role === "loading" ? (
                 <div className="message loading-dots">
                   <span className="dot">.</span>
@@ -57,28 +136,30 @@ const ChatModal = ({ isOpen, onClose, isMobile }) => {
                   <span className="dot">.</span>
                 </div>
               ) : (
-                <div
-                  className={`message ${message.role}-message`}
-                  dangerouslySetInnerHTML={{
-                    __html: marked(message.content).replace(/<p>|<\/p>/g, ""),
-                  }}
-                ></div>
+                <div className="assistant-message-container">
+                  <div
+                    className={`message ${message.role}-message`}
+                    dangerouslySetInnerHTML={{
+                      __html: marked(message.content).replace(/<p>|<\/p>/g, ""),
+                    }}
+                  ></div>
+                  {message.role === "assistant" && (
+                    <div className="assistant-label">AI</div>
+                  )}
+                </div>
               )}
             </div>
           ))}
           <div ref={messagesEndRef} />
         </div>
         <div className="input-area">
-          <button className="refresh-button" onClick={handleRefresh}>
-            <TbRefresh />
-          </button>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type a message..."
             onKeyPress={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
-                // handleSend(input);
+                handleSend(input);
                 e.preventDefault();
               }
             }}
@@ -88,7 +169,7 @@ const ChatModal = ({ isOpen, onClose, isMobile }) => {
             onClick={() => handleSend(input)}
             disabled={isSending}
           >
-            Send
+            {isSending ? "..." : "Send"}
           </button>
         </div>
       </div>

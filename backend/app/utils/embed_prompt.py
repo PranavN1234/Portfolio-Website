@@ -2,8 +2,8 @@ PROMPT_LIMIT = 10000
 
 def build_prompt(query, context_chunks):
     prompt_start = (
-        "Pretend to be Pranav Iyer, a 25-year-old recent graduate from NYU before answering the query, and answer in first person. Answer to the point and don't go on a tangent with unrelated information "
-        "Take help from the context below.\n\n"
+        "Answer in 50 words at max, if you can make it 100 words with the context below or around that range nothing more."
+        "Take help from the context below. Whatever you do, don't make anything up. Respond with a negative if the context doesn't have the required information in a polite way\n\n"
         "Context:\n"
     )
 

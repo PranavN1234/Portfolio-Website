@@ -3,19 +3,19 @@
   top: 0;
   right: 0;
   height: 100vh;
-  width: 380px; /* Default for desktop */
+  width: 380px;
   max-width: 100%;
   background-color: #fff;
   border-left: 1px solid #ccc;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 1000; /* This is fine */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 10px 20px 10px 10px;
   box-sizing: border-box;
-  transition: transform 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s ease;
 }
 
 .chat-header {
@@ -27,7 +27,7 @@
 }
 
 .chat-title {
-  color: #8c5e58; /* Your theme color */
+  color: #8c5e58;
   font-size: 20px;
   font-weight: bold;
 }
@@ -47,8 +47,57 @@
   margin-bottom: 10px;
   border-radius: 8px;
   background-color: #f9f9f9;
+  margin-top: 20px; /* Space between header and messages */
 }
 
+/* User Message */
+.user-message-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px; /* Increase space between messages */
+}
+
+.user-message {
+  background-color: #d1f1ff;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 15px 15px 0 15px;
+  max-width: 75%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 5px; /* Spacing around the message bubble */
+}
+
+/* Assistant Message */
+.assistant-message-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px; /* Increase space between messages */
+  align-items: center; /* Align AI label vertically */
+  gap: 8px; /* Space between label and message */
+}
+
+.assistant-message {
+  background-color: #f0e6f6;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 15px 15px 15px 0;
+  max-width: 75%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 5px; /* Spacing around the message bubble */
+}
+
+/* Assistant Indicator Label */
+.assistant-label {
+  background-color: #8c5e58;
+  color: #fff;
+  padding: 2px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-self: flex-start; /* Align to the top of the message */
+}
+
+/* Input Area Styling */
 .input-area {
   display: flex;
   align-items: center;
@@ -69,7 +118,7 @@
 }
 
 .input-area button {
-  background-color: #8c5e58; /* Your theme color */
+  background-color: #8c5e58;
   color: #fff;
   padding: 10px 15px;
   border: none;
@@ -80,18 +129,6 @@
 
 .input-area button:hover {
   background-color: #A2707A;
-}
-
-.refresh-button {
-  background: none;
-  border: none;
-  margin-right: 5px;
-  cursor: pointer;
-  color: #8c5e58;
-}
-
-.refresh-button:hover {
-  color: #A2707A;
 }
 
 /* Styling for loading dots */
@@ -105,33 +142,33 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-
 /* Mobile View Styles */
 @media (max-width: 768px) {
   .chat-modal {
-    width: 100%; /* Full width */
-    height: 100vh; /* Full height */
-    bottom: 0; /* Position at bottom */
+    width: 100%;
+    max-height: 75vh; /* Cover 3/4th of the screen */
+    bottom: 0; /* Position at the bottom */
     right: 0;
-    border-radius: 20px 20px 0 0; /* Rounded corners at the top */
-    padding: 20px; /* More padding */
-    transform: translateY(100%); /* Initially hidden */
-    transition: transform 0.3s ease; /* Smooth slide-up transition */
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    transform: translateY(100%); /* Hidden by default */
+    transition: transform 0.3s ease;
   }
 
   .chat-modal.is-active {
-    transform: translateY(0); /* Slide up when active */
+    transform: translateY(0); /* Show chat modal when active */
   }
 
   .chat-header {
-    border-top-left-radius: 20px; /* Match modal's corner */
+    border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
 
   .chat-button {
-    bottom: 20px; /* Adjust button position */
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed;
+    bottom: 20px; /* Position at the bottom */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust position */
     background-color: #8c5e58;
     color: #fff;
     padding: 15px 20px;
@@ -139,7 +176,18 @@
     border-radius: 30px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1001; /* Above modal */
+    z-index: 2000; /* Ensure it is above all other elements */
     transition: background-color 0.3s;
   }
+
+  .chat-button:hover {
+    background-color: #A2707A;
+  }
+  
+  body {
+    margin: 0; /* Remove any default margin to prevent whitespace */
+    padding: 0; /* Remove any default padding to prevent whitespace */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
 }
+
