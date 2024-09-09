@@ -2,15 +2,11 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pranavniyer.com", 
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next build",  
-    "static": "next build && touch ./out/.nojekyll && echo 'www.pranavniyer.com' > ./out/CNAME",
-    "deploy": "gh-pages -d out -t true"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
