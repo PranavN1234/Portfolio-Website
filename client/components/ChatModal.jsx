@@ -12,7 +12,7 @@ const ChatModal = ({ isOpen, onClose, isMobile }) => {
     {
       role: "assistant",
       content:
-        "Hey! Welcome to my AI bot powered by RAG (Retrieval-Augmented Generation). It combines stored knowledge with real-time retrieval to give you the most accurate and relevant answers. More information still has to be updated",
+        "Hey! Welcome to my AI bot powered by RAG (Retrieval-Augmented Generation). Give it a try! I've built a knowledge base with information about me",
     },
   ];
 

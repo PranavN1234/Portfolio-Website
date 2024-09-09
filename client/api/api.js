@@ -1,5 +1,5 @@
 export const getAIMessage = async (userQuery) => {
-    const apiUrl = 'http://127.0.0.1:8000/answer';
+    const apiUrl = 'https://portfolio-backend-435100.ue.r.appspot.com/answer';
 
     try {
         const response = await fetch(apiUrl, {

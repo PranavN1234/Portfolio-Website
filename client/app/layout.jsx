@@ -14,9 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        {/* Add Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className={jetbrainsMono.className}>
-        <Header/>
-        <StairTransition/>
+        <Header />
+        <StairTransition />
         <PageTransition>{children}</PageTransition></body>
     </html>
   );

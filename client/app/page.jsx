@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
+import { FaCommentDots } from "react-icons/fa"; // Import the message icon
 import { useState, useEffect } from "react";
 
 // Components
@@ -12,11 +13,11 @@ import Resume from "@/components/sections/Resume";
 import Work from "@/components/sections/Work";
 import Publications from "@/components/sections/Publications";
 import Contact from "@/components/sections/Contact";
-import Divider from "@/components/Divider";  // Import Divider component
+import Divider from "@/components/Divider"; // Import Divider component
 import ChatModal from "@/components/ChatModal";
 
 const Home = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false);  // Initially false to prevent it from being open on load
+  const [isChatOpen, setIsChatOpen] = useState(false); // Initially false to prevent it from being open on load
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect if the device is mobile
@@ -30,13 +31,18 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Automatically open the chat 10 seconds after page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsChatOpen(true); // Open the chat modal
+    }, 7000); // 10 seconds in milliseconds
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, []);
+
   const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf"; // Path to your resume in the 'public' folder
-    link.download = "Pranav_resume.pdf"; // Name of the downloaded file
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const link = "https://drive.google.com/file/d/1mbo3Oez41RMqT6ugMNpOKo5vntmJVFEq/view?usp=sharing"; // Google Drive link
+    window.open(link, "_blank"); // Open the link in a new tab
   };
 
   return (
@@ -122,7 +128,7 @@ const Home = () => {
           className={`fixed ${isMobile ? 'bottom-4 left-1/2 transform -translate-x-1/2' : 'bottom-4 right-4'} bg-[#8c5e58] text-white p-3 rounded-full shadow-lg hover:bg-[#A2707A]`}
           onClick={() => setIsChatOpen(true)}
         >
-          Chat with Me
+          <FaCommentDots size={isMobile ? 24 : 36} /> {/* Use the message icon here with different sizes */}
         </button>
       )}
     </section>
