@@ -88,7 +88,7 @@ const Contact = () => {
               onSubmit={sendEmail}
               className="flex flex-col gap-6 p-10 bg-[#e7d8c9] rounded-xl"
             >
-              <h3 className="text-4xl text-[#b2967d]">Let's work together</h3>
+              <h3 className="text-4xl text-[#b2967d]">Let&apos;s work together</h3>
               <p className="text-[#8c5e58]/80">Contact me, Here!</p>
               {/* input */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

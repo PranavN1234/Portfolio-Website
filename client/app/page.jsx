@@ -54,7 +54,7 @@ const Home = () => {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl text-[#8c5e58]">Software Developer</span>
             <h1 className="h1 mb-6">
-              Hello I'm <br /> <span className="text-[#A2707A]">Pranav Iyer</span>
+            Hello I&apos;m <br /> <span className="text-[#A2707A]">Pranav Iyer</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-[#8c5e58]/80">
               I am a recent graduate in Computer Engineering from NYU and an ex Software Engineer at Bank of America 
