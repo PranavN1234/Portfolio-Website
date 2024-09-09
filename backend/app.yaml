@@ -1,5 +1,0 @@
-runtime: python311
-entrypoint: gunicorn -b :$PORT run:app
-env_variables:
-  OPENAI_API_KEY: 'sk-n4r8BScA5OGbiTnKeG414oARk-wUbj9J4uxXh_Vk-oT3BlbkFJIJdwRr0He_ntsBBEak2LSxIl0KSyqeq0oU4HEYuNUA'
-  PINECONE_API_KEY: 'a74432d7-6492-4d00-b84d-d3e09222dcc5'
